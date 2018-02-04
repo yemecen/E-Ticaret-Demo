@@ -23,7 +23,7 @@ class ProductsTableCreate extends Migration
             $table->string('categoryName',50);
             $table->string('sku',100);
             $table->integer('stock');
-            $table->integer('tax',50);
+            $table->integer('tax');
             $table->string('category',50);
             $table->string('image',200);
             $table->decimal('price',8,2);
