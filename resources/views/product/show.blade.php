@@ -16,16 +16,9 @@
 	        
 	                    <h6 class="title-price"><small>Fiyat</small></h6>
 	                    <h3 style="margin-top:0px;">{{$product->price}}</h3>
-	          
+	         
 	                    <div class="section" style="padding-bottom:20px;">
-	                        <h6 class="title-attr"><small>Miktar</small></h6>                    
-	                        <div>
-	                            <input value="1" />
-	                        </div>
-	                    </div>                
-	        
-	                    <div class="section" style="padding-bottom:20px;">
-	                        <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Sepete Ekle</button>
+	                        <a href="{{route('shoppingCard',$product->id)}}" class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Sepete Ekle</a>
 	                    </div>                                        
 	                </div>                              
 	        

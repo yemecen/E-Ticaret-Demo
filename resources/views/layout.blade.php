@@ -22,18 +22,21 @@
 			
     </head>
     <body>              
-    	
+       	
     	<div class="container">
 		    <div class="row">
-		        <nav class="navbar navbar-default">
+		    	<nav class="navbar navbar-default">
+		        	<a class="navbar-brand" href="/E-Ticaret-Demo/public">
+                        <i class="fas fa-home"></i>
+                      </a>
 		            <div class="container-fluid">
 		                <ul class="nav navbar-nav navbar-right">
-		                    @if(Session::has('shoppingCard'))
+		                    @if(Session::has('ShoppingCard'))
 		                    <li class="dropdown">
-		                      <a href="#"><i class="fas fa-shopping-cart"></i> Sepetim <span class="badge">5</span></a>
+		                      <a href="shoppingCard"><i class="fas fa-shopping-cart"></i> Sepetim <span class="badge">{{Session::has('ShoppingCard') ? Session::get('ShoppingCard')->cartTotalQuantity : ''}}</span></a>
 		                    </li>
 		                     @else
-		                    <li><a href="#"><i class="fas fa-shopping-cart"></i> Sepetim <span class="badge">0</span></a></li>
+		                    <li><a href="shoppingCard"><i class="fas fa-shopping-cart"></i> Sepetim <span class="badge">0</span></a></li>
 		                     @endif
 		                </ul>
 		                    

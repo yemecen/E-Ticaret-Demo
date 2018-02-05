@@ -13,3 +13,8 @@
 
 Route::get('/', 'ProductController@Index');
 Route::get('/product/{id}', 'ProductController@Show');
+Route::get('/product/orderByName','ProductController@OrderByName');
+Route::get('/product/orderByPrice','ProductController@OrderByPrice');
+
+Route::get('/shoppingCard','ShoppingCardController@Index');
+Route::get('/shoppingCard/{id}',['uses' => 'ShoppingCardController@ProductAddCard', 'as' => 'shoppingCard']);

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Cart;
+use Session;
 
-class ProductController extends Controller
+class ShoppingCardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //Tüm ürünleri çağırıyoruz.
-        $product = Product::all();
-        //View'a gönderiyoruz.
-        return view('product.index')->withProduct($product);
+        if (!Session::has('ShoppingCard')) {
+            return view('shoppingcard.index');
+        } else {
+            $oldCart = Session::get('ShoppingCard');
+            $cart = new Cart($oldCart);
+            return view('shoppingcard.index',['products' => $cart->items, 'totalPrice' => $cart->cartTotalPrice]);
+        }
     }
 
     /**
@@ -49,10 +54,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //Detayı gösterilecek ürünün ID'sine göre ürünü çağırıyoruz 
-        $product = Product::where('id',$id)->first();
-        //Ürün Detay view'ı
-        return view('product.show')->withProduct($product);
+        //
     }
 
     /**
@@ -88,30 +90,26 @@ class ProductController extends Controller
     {
         //
     }
-
+    
     /**
-     * Ürünleri isme göre sıralar.
+     * Sepete eklenmek istenen ürün Session'a ekler.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function orderByName()
+    public function productAddCard(Request $request, $id)
     {
-        //Ürünleri isme göre sıralıyoruz
-        $product = Product::all();
-        //return view('product.index')->withProduct($product);
-        dd($product);
-    }
-
-    /**
-     * Ürünleri fiyatına göre sıralar.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function orderByPrice()
-    {
-        //Ürünleri fiyata göre sıralar
-        $product = DB::table('products')->orderBy('price')->get();
-        //return view('product.index')->withProduct($product);
-        dd($product);
+        //Eklenecek ürünün bilgisini alıyor.
+        $product = Product::find($id);
+        //Sepette eklenmiş ürün varsa, $oldCart değişkenimize atıyoruz
+        $oldCart = Session::has('ShoppingCard') ? Session::get('ShoppingCard') : null;
+        //Yeni bir Cart nesnesi türetiyoruz
+        $cart = new Cart($oldCart);
+        //$cart nesnemize, yeni ürünümüzü ekliyoruz
+        $cart->add($product,$product->id);
+        //Mevcutta olanlar ile($oldCart olanlar), yeni eklenecek ürün ile birleştirip ShoppingCard Session'a ekliyoruz
+        $request->session()->put('ShoppingCard',$cart);
+        
+        return redirect('/');
     }
 }
