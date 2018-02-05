@@ -13,8 +13,8 @@
 
 		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
-		<link rel="stylesheet" href="{{URL::to('public/css/productDetail.css')}}">
-		<script src="{{URL::to('public/js/productDetail.js')}}"></script>
+		<link rel="stylesheet" href="{{URL::to('css/productDetail.css')}}">
+		<script src="{{URL::to('js/productDetail.js')}}"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 				<!-- Latest compiled and minified JavaScript -->

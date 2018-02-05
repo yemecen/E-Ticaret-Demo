@@ -5,20 +5,19 @@
 <div class="container">
 	<div class="row">
 		<!--Sıralama-->
-		<div class="panel panel-default">
-			  <div class="panel-body">
 			    <ul class="nav navbar-nav navbar-right">
 				    <li class="dropdown">
 					      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Akıllı Sıralama <span class="caret"></span></a>
 
 					      <ul class="dropdown-menu">
-					        <li><a href="product/orderByName">İsme Göre</a></li>
-					        <li><a href="product/orderByPrice">Fiyata Göre</a></li>
+					        <li><a href="{{route('orderByName')}}">İsme Göre</a></li>
+					        <li><a href="{{route('orderByPrice')}}">Fiyata Göre</a></li>
 					      </ul>
 				    </li>
-				  </ul> 
-			  </div>
-		</div>
+				</ul> 
+	</div>
+		
+	<div class="row">
 		
 		@foreach ($product as $item)
 			<div class="col-sm-6 col-md-4">

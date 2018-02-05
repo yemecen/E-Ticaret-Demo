@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -97,9 +98,9 @@ class ProductController extends Controller
     public function orderByName()
     {
         //Ürünleri isme göre sıralıyoruz
-        $product = Product::all();
-        //return view('product.index')->withProduct($product);
-        dd($product);
+        $product = Product::orderBy('name')->get();
+
+        return view('product.index')->withProduct($product);
     }
 
     /**
@@ -110,8 +111,8 @@ class ProductController extends Controller
     public function orderByPrice()
     {
         //Ürünleri fiyata göre sıralar
-        $product = DB::table('products')->orderBy('price')->get();
-        //return view('product.index')->withProduct($product);
-        dd($product);
+        $product = Product::orderBy('price','asc')->get();
+
+        return view('product.index')->withProduct($product);
     }
 }
