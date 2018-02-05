@@ -49,8 +49,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        //Detayı gösterilecek ürünün ID'sine göre ürünü çağırıyoruz 
+        $product = Product::where('id',$id)->first();
         //Ürün Detay view'ı
-        return view('product.show');
+        return view('product.show')->withProduct($product);
     }
 
     /**
