@@ -110,6 +110,29 @@ class ShoppingCardController extends Controller
         //Mevcutta olanlar ile($oldCart olanlar), yeni eklenecek ürün ile birleştirip ShoppingCard Session'a ekliyoruz
         $request->session()->put('ShoppingCard',$cart);
         
-        return redirect('/');
+        return redirect('shoppingCard/');
     }
+
+    /**
+     * Sepette ki ürünü bir azaltır.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function productDecrease(Request $request,$id)
+    {
+        //Eklenecek ürünün bilgisini alıyor.
+        $product = Product::find($id);
+        //Sepette eklenmiş ürün varsa, $oldCart değişkenimize atıyoruz
+        $oldCart = Session::has('ShoppingCard') ? Session::get('ShoppingCard') : null;
+        //Yeni bir Cart nesnesi türetiyoruz
+        $cart = new Cart($oldCart);
+        //$cart nesnemize, ürünü bir azaltıyoruz
+        $cart->decrease($product,$product->id);
+        //Mevcutta olanlar ile($oldCart olanlar), yeni eklenecek ürün ile birleştirip ShoppingCard Session'a ekliyoruz
+        $request->session()->put('ShoppingCard',$cart);
+
+        return redirect('shoppingCard');
+    }
+
 }

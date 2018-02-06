@@ -13,8 +13,11 @@
 
 Route::get('/', 'ProductController@Index');
 Route::get('/product/{id}', 'ProductController@Show');
-Route::get('/orderByName',['uses' => 'ProductController@OrderByName', 'as' => 'orderByName']);
-Route::get('/orderByPrice',['uses' => 'ProductController@OrderByPrice', 'as' => 'orderByPrice']);
+Route::get('/orderByName', ['uses' => 'ProductController@OrderByName', 'as' => 'orderByName']);
+Route::get('/orderByPrice', ['uses' => 'ProductController@OrderByPrice', 'as' => 'orderByPrice']);
 
 Route::get('/shoppingCard','ShoppingCardController@Index');
-Route::get('/shoppingCard/{id}',['uses' => 'ShoppingCardController@ProductAddCard', 'as' => 'shoppingCard']);
+Route::get('/shoppingCard/{id}', ['uses' => 'ShoppingCardController@ProductAddCard', 'as' => 'shoppingCard']);
+
+Route::get('/shoppingCard/Decrease/{id}', 'ShoppingCardController@ProductDecrease');
+Route::get('/shoppingCard/Increase/{id}', 'ShoppingCardController@ProductAddCard');
