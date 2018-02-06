@@ -10,7 +10,7 @@ use Session;
 class ShoppingCardController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Sepetin içeriğini getirir.
      *
      * @return \Illuminate\Http\Response
      */
@@ -114,7 +114,7 @@ class ShoppingCardController extends Controller
     }
 
     /**
-     * Sepette ki ürünü bir azaltır.
+     * Sepette ki ürünü bir azaltır. Bir tane kalınca, azaltıldığında sepetten kaldırır.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
